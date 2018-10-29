@@ -19,3 +19,14 @@
                        (hunchentoot:session-value :username)))))
      (<:hr))
     (getf context :body))))
+
+(defun render-post (post)
+  (list
+   (<:div
+    (<:h2 (<:a :href
+               (genurl 'post :id (position post *posts* :test #'equal))
+               (getf post :title)))
+    (<:h3 (<:a :href
+               (genurl post :author)))
+    (<:p (getf post :content)))
+   (<:hr)))
